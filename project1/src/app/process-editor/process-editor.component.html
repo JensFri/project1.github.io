@@ -1,0 +1,78 @@
+<div class="container mat-elevation-z8">
+    <mat-table #table [dataSource]="processList">       
+        <ng-container matColumnDef="titel">
+          <mat-header-cell *matHeaderCellDef>Titel</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.titel}}</mat-cell>            
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Vorname</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>            
+          </ng-container>
+          <ng-container matColumnDef="lastname">
+              <mat-header-cell *matHeaderCellDef>Nachname</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.lastname}}</mat-cell>            
+            </ng-container>
+            <ng-container matColumnDef="created_at">
+                <mat-header-cell *matHeaderCellDef>Erstellt am</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.created_at | date: 'EE, dd.MM.yyyy'}}</mat-cell>             
+              </ng-container>
+              <ng-container matColumnDef="updated_at">
+                <mat-header-cell *matHeaderCellDef>Geändert am</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.updated_at | date: 'EE, dd.MM.yyyy'}}</mat-cell>             
+              </ng-container>
+              <ng-container matColumnDef="filename">
+                <mat-header-cell *matHeaderCellDef>Datei</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a href="~/Drafts/{{element.filename}}" target="_self" download>{{element.filename}}</a></mat-cell>             
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>
+                  <button mat-icon-button color="primary" (click)="addNew()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+                  </button>
+                </mat-header-cell>
+                
+                <mat-cell *matCellDef="let row; let i=index;">
+                  <button mat-icon-button color="accent">
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                  </button>
+          
+                  <button mat-icon-button color="accent" (click)="deleteProcess(row._id, row.titel, row.name, row.lastname, row.created_at, row.updated_at)">
+                    <mat-icon aria-label="Delete">delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+                
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table> 
+
+    <mat-table #table [dataSource]="attachmentList">       
+    <ng-container matColumnDef="file">
+        <mat-header-cell *matHeaderCellDef>Datei</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.filename}}</mat-cell>             
+      </ng-container>
+
+      <ng-container matColumnDef="actionss">
+          <mat-header-cell *matHeaderCellDef>Datei</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index">{{element.filename}}
+            <button mat-icon-button color="primary" (click)="download(i)">
+              <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            </button>
+           </mat-cell>
+           </ng-container>
+      
+      <mat-header-row *matHeaderRowDef="test"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: test;"></mat-row>
+    </mat-table>
+ </div>
+
+ <!-- <h2>My Heroes</h2>
+ <ul class="heroes">
+    <li *ngFor="let process of processList">
+      <a routerLink="/detail/{{process.id}}">
+        <span class="badge">{{process.id}}</span> {{process.name}}
+      </a>
+    </li>
+  </ul> -->

@@ -1,0 +1,65 @@
+textarea {   
+    min-height: 150px;    
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 450px;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+  
+  .mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+  }
+
+  .fileUpload {
+    text-align: center;
+  }
+
+  .rowuploadList {
+    padding-top: 20px;
+  }
+
+  .progress {
+    width: 20px;
+  }
+
+  .BnClose {
+    float:left;
+  }
+
+  .BnStart {
+    margin-left: 245px;
+  } 
+  
+
+  .filename {
+    margin: 10px;
+  }
+  
+  .progress-section {    
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+    
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  
+  }
+  
+  .uploadall {
+    margin-bottom: 15px;
+  }

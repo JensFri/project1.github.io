@@ -1,0 +1,97 @@
+
+<div class="container">
+<h3 mat-dialog-title>Experimentanfrage starten</h3>
+<mat-dialog-content>  
+    <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="Titel" [(ngModel)]="data.titel" name="titel" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+          <mat-form-field color="accent">
+            <input matInput #input class="form-control" placeholder="Vorname" [(ngModel)]="data.name" name="name" required >
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field color="accent">
+              <input matInput #input class="form-control" placeholder="Nachname" [(ngModel)]="data.lastname" name="lastname" required >
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Erstellt am:" [(ngModel)]="data.created_at" name="create_at" required >
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field color="accent">
+                  <input matInput #input class="form-control" placeholder="Geändert am:" [(ngModel)]="data.updated_at"  name="updated_at" required >
+                  <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="fileUpload">       
+                 
+                <div id="fileSelector"  *ngIf="uploader?.queue?.length < 1"> 
+                    <h4>Datei hinzufügen:</h4> 
+                  <button mat-mini-fab color="warn">
+                    <label>
+                       <mat-icon>folder</mat-icon>
+                       <input type="file"  id="filename" name="filename" ng2FileSelect [uploader]="uploader"  style="display:none"/>
+                    </label>
+                  </button>
+                 </div> 
+                 <div class="rowuploadList" *ngFor="let item of uploader.queue">
+                  <mat-card>
+                    <mat-card-content>
+                      <div class="filename">{{item.file.name}}</div>                  
+                      <section class="progress-section">
+                         <mat-progress-bar  class="example-margin" mode="determinate" color="warn" [ngStyle]="{'width':item.progress-section+'%'}" ></mat-progress-bar>
+                      </section> 
+                      <div class="uploadall" *ngIf="uploader?.queue?.length > 1">
+                          <button mat-raised-button color="primary" (click)="uploader.uploadAll()">Upload all</button>
+                      </div>                      
+                      <div *ngIf="attachmentList?.length < 1">
+                          <button mat-raised-button color="primary" (click)="item.upload()">upload</button>
+                         <button mat-raised-button color="primary" (click)="item.remove()">abbrechen</button>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>   
+                <div *ngFor="let item of attachmentList; let i = index">
+                  <div>{{item.originalname}}</div>
+                  <div><button mat-raised-button color="primary" (click)="download(i)">Download</button></div>
+                </div>                         
+              </div>
+           
+    <!-- <h4>Beschreibung:</h4>
+    <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="Beschreibung" [(ngModel)]="data.describtion" name="description" required ></textarea>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div> -->
+    
+    <!-- <h4>Datei anhängen:</h4>
+    <button mat-mini-fab color="warn">
+            <label>
+               <mat-icon>folder</mat-icon>
+               <input type="file"  ng-file-model="files" multiple style="display:none"/>
+            </label>
+    </button> -->
+  
+
+
+<mat-dialog-actions>
+  <div class="BnClose">
+  <button mat-raised-button color="primary" mat-dialog-close>Schließen</button>
+</div>
+
+  <div class="BnStart">    
+  <button  mat-raised-button color="primary" [mat-dialog-close]="1" (click)="confirmAdd()">Starten</button>
+</div>
+</mat-dialog-actions>
+</mat-dialog-content>
+</div>
